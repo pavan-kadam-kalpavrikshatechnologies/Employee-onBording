@@ -1,0 +1,9 @@
+<mvc:View controllerName="sap.kt.demo.employeedetailscapm.controller.Employee"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" navButtonPress="onButtonPress" showNavButton="true">
+        <content>
+            <Text text="This is Employee" />
+        </content>
+    </Page>
+</mvc:View>

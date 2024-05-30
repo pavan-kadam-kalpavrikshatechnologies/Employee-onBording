@@ -1,0 +1,22 @@
+<mvc:View controllerName="sap.kt.demo.employeedetailscapm.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Input
+                    id="usernameInput"
+                    placeholder="Username"
+                    width="100%"/>
+                <Input
+                    id="passwordInput"
+                    type="Password"
+                    placeholder="Password"
+                    width="100%"/>
+                <Button
+                    text="Login"
+                    press="onLoginPress"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
