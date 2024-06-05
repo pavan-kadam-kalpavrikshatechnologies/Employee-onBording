@@ -74,7 +74,8 @@
         "settings": {
           "operationMode": "Server",
           "autoExpandSelect": true,
-          "earlyRequests": true
+          "earlyRequests": true,
+          "useBatch":false
         }
       }
     },
@@ -116,6 +117,13 @@
           "target": [
             "TargetView3"
           ]
+        },
+        {
+          "name": "RouteView4",
+          "pattern": "View4",
+          "target": [
+            "TargetView4"
+          ]
         }
       ],
       "targets": {
@@ -139,6 +147,13 @@
           "clearControlAggregation": false,
           "viewId": "View3",
           "viewName": "Admin"
+        },
+        "TargetView4": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View4",
+          "viewName": "Singup"
         }
       }
     },

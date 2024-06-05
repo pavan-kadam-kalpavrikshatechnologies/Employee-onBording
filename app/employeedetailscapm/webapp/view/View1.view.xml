@@ -1,8 +1,24 @@
 <mvc:View controllerName="sap.kt.demo.employeedetailscapm.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+   displayBlock="true"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:g="sap.f" xmlns:com="sap.suite.ui.commons"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:smartField="sap.ui.comp.smartfield" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:f="sap.f"	xmlns:u="sap.ui.unified"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants">
     <Page id="page" title="{i18n>title}">
         <content>
+        	<l:VerticalLayout>
+                <u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
+					icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload"/>
+            </l:VerticalLayout>		
             <VBox class="sapUiSmallMargin">
                 <Input
                     id="usernameInput"
@@ -16,6 +32,55 @@
                 <Button
                     text="Login"
                     press="onLoginPress"/>
+
+                    <Link text="Singup" press="onPressSingupView" ></Link>
+            </VBox>
+
+            <VBox >
+                <Input placeholder="User ID" id="userid" width="50%" ></Input>
+                <Input placeholder="Increment Number" type="Number" id="amountIncrement" width="50%" ></Input>
+                <Button text="Amount Increment" press="incrementAmount" ></Button>
+            </VBox>
+
+             <VBox width="100%" class="sapUiSmallMargin">
+             <com:ChartContainer
+                        id="chartContainer"
+                        showFullScreen="true"
+                        showPersonalization="false"
+                        autoAdjustHeight="false"
+                        contentChange="attachContentChange">
+                        
+                        <com:dimensionSelectors>
+                            <Title text="Fiori App Recommendations" titleStyle="H4" />
+                        </com:dimensionSelectors>
+                        
+                        <com:content>
+                            <com:ChartContainerContent>
+                                <com:content>
+                                <viz:VizFrame id="idVizFrame1" height='25rem'   uiConfig="{applicationSet:'fiori'}" vizType="bar" selectData="onSelectFioriApp">
+                                        <viz:dataset>
+                                            <viz.data:FlattenedDataset data="{jsondata>/}">
+                                                <viz.data:dimensions>
+                                                    <viz.data:DimensionDefinition name="Role Name" value="{jsondata>type}" />
+                                                </viz.data:dimensions>
+                                                <viz.data:measures>
+                                                    <viz.data:MeasureDefinition name="FA Count" value="{jsondata>userCount}" />
+                                                </viz.data:measures>
+                                            </viz.data:FlattenedDataset>
+                                        </viz:dataset>
+                                        <viz:feeds>
+                                            <viz.feeds:FeedItem id="valueAxisFeed12" uid="valueAxis" type="Measure" values="FA Count" />
+                                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Role Name" />
+                                        </viz:feeds>
+                                        <viz:dependents>
+                                            <viz:Popover id="idPopOver12"></viz:Popover>
+                                        </viz:dependents>
+                                    </viz:VizFrame>
+                                    
+                                </com:content>
+                            </com:ChartContainerContent>
+                </com:content>
+            </com:ChartContainer>
             </VBox>
         </content>
     </Page>

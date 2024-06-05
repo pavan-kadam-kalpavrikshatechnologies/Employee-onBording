@@ -6,7 +6,7 @@ function (Controller) {
 
     return Controller.extend("sap.kt.demo.employeedetailscapm.controller.Employee", {
         onInit: function () {
-            
+           
             
         },
         onButtonPress:function(){

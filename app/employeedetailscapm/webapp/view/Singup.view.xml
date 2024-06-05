@@ -1,0 +1,22 @@
+<mvc:View controllerName="sap.kt.demo.employeedetailscapm.controller.Singup"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}"  navButtonPress="onButtonPress" showNavButton="true">
+        <content>
+             <VBox class="sapUiSmallMargin">
+                <Input id="userID" placeholder="User ID"/>
+                <Input id="userName" placeholder="User Name"/>
+                <Input id="password"  placeholder="Password"/>
+                <Input id="type" placeholder="Type"/>
+                <Input id="firstName" placeholder="First Name"/>
+                <Input id="lastName" placeholder="Last Name"/>
+                <Input id="DOB" placeholder="Date of Birth" type="Date" />
+                <Input id="email" placeholder="Email"/>
+                <Input id="address" placeholder="Address"/>
+                <Input id="mobile" placeholder="Mobile"/>
+                <Input id="salary" placeholder="salary"/>
+                <Button text="Sign Up" press="onSignup"/>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
