@@ -82,13 +82,6 @@
                 </com:content>
             </com:ChartContainer>
             </VBox>
-
-             <smartTable:SmartTable entitySet="Suppliers" header="Suppliers Data "
-            tableType="ResponsiveTable" useTablePersonalisation="true" showFullScreenButton="true" headerLevel="H4"
-            enableAutoBinding="true" initiallyVisibleFields="ID,fullName,isBlocked"
-            demandPopin="true" class="sapUiSmallMargin" enableAutoColumnWidth="true" >
-            <Table sticky="ColumnHeaders" />
-            </smartTable:SmartTable>
         </content>
     </Page>
 </mvc:View>

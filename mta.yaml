@@ -9,6 +9,7 @@ modules:
     requires:
       - name: empolyeecapm-auth
       - name: empolyeecapm-db
+      - name: empolyeecapm-destination-service
     provides:
       - name: srv-api
         properties:

@@ -1,5 +1,6 @@
 namespace my.Login;
 using { managed } from '@sap/cds/common';
+
 entity Login: managed {
     key ID : String(20);
     userName : String(20);
@@ -44,4 +45,3 @@ entity employment : managed {
   designation : String(30);
   officeAddress : String(100);  
 }
-

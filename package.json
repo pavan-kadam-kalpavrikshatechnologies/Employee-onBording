@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.15.0",
+    "@sap-cloud-sdk/util": "^3.15.0",
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
@@ -29,13 +31,25 @@
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch-employeedetailscapm": "cds watch --open employeedetailscapm/webapp/index.html?sap-ui-xx-viewCache=false"
   },
-  "cds": {
-    "requires": {
-      "db": "hana"
-    }
-  },
   "sapux": [
     "app/empolyeedetails",
     "app/employeedetailscapm"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "[hybrid]": {
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+            "headers": {
+              "APIKey": "Lk5nIk9NcTMdlShHRnCLGURR9skEt43N"
+            }
+          }
+        }
+      },
+      "db": "hana"
+    }
+  }
 }

@@ -1,11 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller"
 ],
-    function (Controller) {
-        "use strict";
-
-        return Controller.extend("sap.kt.demo.employeedetailscapm.controller.View1", {
+function (Controller) {
+    "use strict";
+    
+    return Controller.extend("sap.kt.demo.employeedetailscapm.controller.View1", {
             onInit: function () {
+                
                 // this.localModel = new sap.ui.model.json.JSONModel();
                 // this.getOwnerComponent().setModel(this.localModel, "localModel");
 
@@ -13,7 +14,7 @@ sap.ui.define([
                 oModel.callFunction("/usercount", {
                     method: "GET",
                     success: function (oData) {
-
+                        console.log(oData);
                         var jsondata = new sap.ui.model.json.JSONModel(oData.results)
                         this.getView().setModel(jsondata, "jsondata")
                     }.bind(this),
@@ -21,21 +22,12 @@ sap.ui.define([
                         console.log(error);
                     }
                 })
-                oModel.callFunction("/SuppliersDataIsBlocked", {
-                    method: "GET",urlParameters:{
-                        "value":false
-                    },
-                    success: function (oData) {
-                        console.log(oData);
-                    }, error: function (error) {
-                        console.log(error);
-                    }
-                })
+                
             },
             onLoginPress: function () {
                 var username = this.byId("usernameInput").getValue();
                 var password = this.byId("passwordInput").getValue();
-
+                
                 if (username !== "" && password !== "") {
                     var oModel = this.getOwnerComponent().getModel();
 
@@ -66,7 +58,7 @@ sap.ui.define([
                     sap.m.MessageToast.show("Please enter username and password");
                 }
             },
-
+            
             onPressSingupView: function () {
                 var Router = this.getOwnerComponent().getRouter();
                 Router.navTo("RouteView4");
@@ -75,7 +67,7 @@ sap.ui.define([
                 var file = e.getParameter("files") && e.getParameter("files")[0];
                 this._import(file);
             },
-
+            
             _import: function (file) {
                 var that = this;
                 if (file && window.FileReader) {
@@ -86,7 +78,7 @@ sap.ui.define([
                         var items = [];
                         workbook.SheetNames.forEach(function (sheetName) {
                             items = items.concat(XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]));
-                        });
+                        });    
                         that.sendDataToBackend(items);
                     };
                     reader.onerror = function (ex) {
@@ -95,12 +87,12 @@ sap.ui.define([
                     reader.readAsBinaryString(file);
                 }
             },
-
-
+    
+            
             sendDataToBackend: function (items) {
                 var that = this;
-                var oDataModel = that.getOwnerComponent().getModel();
-
+                var oDataModel = that.getOwnerComponent().getModel(); 
+    
                 var payload = {
                     excledata: items.map(item => ({
                         ID: String(item.ID),
@@ -115,13 +107,13 @@ sap.ui.define([
                             email: String(item.email),
                             address: String(item.address),
                             mobile: String(item.mobile),
-                            salary: item.salary
+                            salary : item.salary
                         }
                     }))
                 };
-
+                
                 oDataModel.create("/addUser", payload, {
-                    method: "POST",
+                    method:"POST",
                     success: function (odata) {
                         console.log("Users added successfully:", odata);
                     },
@@ -130,24 +122,23 @@ sap.ui.define([
                     }
                 });
             },
-            incrementAmount: function () {
+            incrementAmount:function(){
                 var userID = this.byId("userid").getValue()
                 var incrementAmount = parseFloat(this.byId("amountIncrement").getValue());
 
                 var oModel = this.getOwnerComponent().getModel()
 
-                oModel.create("/addSalary", {
-                    ID: userID,
-                    salary: incrementAmount
-                }, {
-                    method: "POST",
-                    success: function (oData) {
+                oModel.create("/addSalary",{
+                    ID : userID,
+                    salary:incrementAmount
+                },{
+                    method:"POST",
+                    success : function(oData){
                         console.log(oData);
-                    }, error: function (error) {
+                    },error:function(error){
                         console.log(error);
                     }
                 })
-            },
-
+            }
         });
     });
