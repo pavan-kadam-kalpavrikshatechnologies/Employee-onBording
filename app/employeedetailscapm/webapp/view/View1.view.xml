@@ -41,6 +41,39 @@
                 <Input placeholder="Increment Number" type="Number" id="amountIncrement" width="50%" ></Input>
                 <Button text="Amount Increment" press="incrementAmount" ></Button>
             </VBox>
+         
+            <u:FileUploader id="fileUploader" />
+                    <Button text="Upload" press="onAttachment" />
+                  <!-- <smartTable:SmartTable entitySet="Documents" header="Fiori App Recommendations"
+            tableType="ResponsiveTable" useTablePersonalisation="true" showFullScreenButton="true" headerLevel="H4"
+            enableAutoBinding="true" initiallyVisibleFields="ID,mimeType"
+            demandPopin="true" class="sapUiSmallMargin"  >
+            <Table sticky="ColumnHeaders" />
+            </smartTable:SmartTable> -->
+
+             <Table
+        id="documentsTable"
+        items="{ path: '/Documents'}"
+        mode="SingleSelectMaster"  
+        selectionChange="onSelectionChange">
+        <columns>
+            <Column>
+                <Text text="Name"/>
+            </Column>
+            <Column>
+                <Text text="Mime Type"/>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>   
+                <cells> 
+                    <Text text="{name}"/>
+                    <Text text="{mimeType}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
 
              <VBox width="100%" class="sapUiSmallMargin">
              <com:ChartContainer
@@ -83,12 +116,16 @@
             </com:ChartContainer>
             </VBox>
 
-             <smartTable:SmartTable entitySet="Suppliers" header="Suppliers Data "
+             <smartTable:SmartTable entitySet="Suppliers" header="Fiori App Recommendations"
             tableType="ResponsiveTable" useTablePersonalisation="true" showFullScreenButton="true" headerLevel="H4"
             enableAutoBinding="true" initiallyVisibleFields="ID,fullName,isBlocked"
-            demandPopin="true" class="sapUiSmallMargin" enableAutoColumnWidth="true" >
+            demandPopin="true" class="sapUiSmallMargin"  enableAutoColumnWidth="true" >
             <Table sticky="ColumnHeaders" />
             </smartTable:SmartTable>
+           
+           
+          
+
         </content>
     </Page>
 </mvc:View>

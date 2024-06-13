@@ -1,0 +1,22 @@
+@server = http://localhost:4004/v2/odata/v4/catalog
+
+
+###------------------------------------------------------------------------
+## service info
+GET {{server}}/Login?$expand=empDetail
+Content-Type: application/json
+
+
+###------------------------------------------------------------------------
+## service info
+POST {{server}}/empEducation
+Content-Type: application/json
+
+{
+    "ID": "003",
+    "collegeName": "pqr University",
+    "degree": "BCA Computer Application",
+    "fromDate": "/Date(1220227200000)/",
+    "toDate": "/Date(1341014400000)/",
+    "grade": "A"
+}

@@ -2,13 +2,46 @@ const cds = require("@sap/cds");
 const SequenceHelper = require("./lib/SequenceHelper");
 const { query } = require("express");
 
+
 module.exports = cds.service.impl(async function () {
-    const { Login, empDetails, Suppliers } = this.entities;
+    const { Login, empDetails, Suppliers, Documents } = this.entities;
 
     const service = await cds.connect.to('db');
 
     const external = await cds.connect.to('API_BUSINESS_PARTNER')
 
+    // this.on('CREATE', 'Documents', async (req) => {
+    //     const { name, mimeType, size, content } = req.data;
+    
+    //     if (!content) {
+    //         req.error(400, 'Content must be provided');
+    //         return;
+    //     }
+    
+    //     let buffer;
+    //     try {
+    //         buffer = Buffer.from(content, 'base64');
+    //     } catch (err) {
+    //         req.error(400, 'Invalid content format');
+    //         return;
+    //     }
+    
+    //     const document = {
+    //         name,
+    //         mimeType,
+    //         size,
+    //         content: buffer
+    //     };
+    
+    //     try {
+    //         const result = await service.run(INSERT.into(Documents).entries(document));
+    //         return result;
+    //     } catch (error) {
+    //         req.error(500, 'Error saving document to the database');
+    //         console.error('Error saving document:', error);
+    //     }
+    // });
+    
     this.on('usercount', async req => {
         try {
             let data;
@@ -98,7 +131,7 @@ module.exports = cds.service.impl(async function () {
             const { value } = req.data;
             let data;
 
-            data = await external.run(SELECT.from(Suppliers).columns('ID', 'fullName', 'isBlocked').where({ isBlocked:value }));
+            data = await external.run(SELECT.from(Suppliers).columns('ID', 'fullName', 'isBlocked').where({ isBlocked: value }));
             return data;
         } catch (error) {
             console.log(error);

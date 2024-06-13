@@ -9,7 +9,13 @@ entity Login: managed {
     empDetail : Composition of empDetails on empDetail.login = $self;
     virtual userCount : Integer;
 }
-
+entity Documents {
+    key ID : UUID;
+    name : String;
+    mimeType : String;
+    content : LargeString;
+    size : Integer;
+}
 entity empDetails : managed {  
     key ID : String(20);
     firstName : String(20);

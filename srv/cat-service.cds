@@ -1,15 +1,15 @@
 using my.Login as my from '../db/data-model';
 using {API_BUSINESS_PARTNER as bupa} from './external/API_BUSINESS_PARTNER';
 
-
 service CatalogService {
    entity Login         as projection on my.Login;
    entity empDetails    as projection on my.empDetails;
    entity empEducation  as projection on my.empEducation;
    entity employment    as projection on my.employment;
    entity empAttachment as projection on my.empAttachment;
+   entity Documents     as projection on my.Documents;
 
-   //  entity Suppliers as projection on bupa.A_Supplier;
+
    entity Suppliers     as
       projection on bupa.A_BusinessPartner {
          key BusinessPartner          as ID,
@@ -23,14 +23,14 @@ service CatalogService {
       isBlocked : Boolean;
    }
 
-   function SuppliersDataIsBlocked(value: Boolean)                           returns array of SuppliersData;
+   function SuppliersDataIsBlocked(value : Boolean)                                              returns array of SuppliersData;
 
    type loginapp {
       type      : String(20);
       userCount : Integer;
    }
 
-   function usercount()                                        returns array of loginapp;
+   function usercount()                                                                          returns array of loginapp;
 
    type addUserData {
       ID           : String(20);
@@ -50,12 +50,12 @@ service CatalogService {
       }
    }
 
-   action   addUser(excledata : array of addUserData)          returns array of addUserData;
+   action   addUser(excledata : array of addUserData)                                            returns array of addUserData;
 
    type incrementSalary {
       ID     : String(20);
       salary : Integer;
    }
 
-   action   addSalary(ID : String(20), salary : Decimal(5, 2)) returns incrementSalary;
+   action   addSalary(ID : String(20), salary : Decimal(5, 2))                                   returns incrementSalary;
 }
