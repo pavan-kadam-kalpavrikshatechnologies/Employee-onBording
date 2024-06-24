@@ -39,6 +39,38 @@
   ],
   "cds": {
     "requires": {
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "risk.viewer@tester.sap.com": {
+              "ID": "risk.viewer@tester.sap.com",
+              "roles": [
+                "RiskViewer"
+              ],
+              "userAttributes": {
+                "type": [
+                  "Employee"
+                ]
+              }
+            },
+            "risk.manager@tester.sap.com": {
+              "ID": "risk.manager@tester.sap.com",
+              "roles": [
+                "RiskManager"
+              ],
+              "userAttributes": {
+                "type": [
+                  "$UNRESTRICTED"
+                ]
+              }
+            }
+          }
+        }
+      },
       "API_BUSINESS_PARTNER": {
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER",
@@ -51,7 +83,10 @@
           }
         }
       },
-      "db": "hana"
+      "db": "hana",
+      "[production]": {
+        "auth": "xsuaa"
+      }
     }
   }
 }
