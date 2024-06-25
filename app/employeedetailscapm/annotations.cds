@@ -1,7 +1,7 @@
 using CatalogService as service from '../../srv/cat-service';
 
 annotate service.employment with {
-    eID           @Common          : {Label: 'EID'};
+    eID           @Common          : {Label: 'eID'};
     companyName   @Common          : {Label: 'Company Name'};
     startDate     @Common          : {Label: 'Start Date'};
     endDate       @Common          : {Label: 'End Date'};
@@ -11,7 +11,7 @@ annotate service.employment with {
      @Common.ValueListWithFixedValues : true 
       eID           @Common.ValueList: {
         $Type          : 'Common.ValueListType',
-        Parameters     : [
+        Parameters     : [  
             {
                 $Type            : 'Common.ValueListParameterInOut',
                 ValueListProperty: 'eID',

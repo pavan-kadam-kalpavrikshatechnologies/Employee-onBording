@@ -83,7 +83,7 @@ module.exports = cds.service.impl(async function () {
             // results.push(...result);
             return result;
         } catch (error) {
-            console.log(error);
+            console.log(error); 
             req.reject(400, 'Failed to add users');
         }
     });

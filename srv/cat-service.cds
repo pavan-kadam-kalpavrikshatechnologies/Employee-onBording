@@ -8,7 +8,7 @@ service CatalogService {
    entity employment    as projection on my.employment;
    entity empAttachment as projection on my.empAttachment;
    entity Documents     as projection on my.Documents;
-
+ 
    entity empEducation @(restrict: [
       {
          grant: ['READ'],
