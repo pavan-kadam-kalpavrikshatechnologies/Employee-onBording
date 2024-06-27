@@ -23,8 +23,8 @@ sap.ui.define([
                     }
                 })
                 oModel.callFunction("/SuppliersDataIsBlocked", {
-                    method: "GET",urlParameters:{
-                        "value":false
+                    method: "GET", urlParameters: {
+                        "value": false
                     },
                     success: function (oData) {
                         console.log(oData);
@@ -151,69 +151,66 @@ sap.ui.define([
             },
             onAttachment: function () {
                 var oFileUploader = this.byId("fileUploader");
-                var oFileUploaderDomRef = oFileUploader.getDomRef().querySelector('input[type="file"]');
-                if (oFileUploaderDomRef && oFileUploaderDomRef.files.length > 0) {
-                    var oFile = oFileUploaderDomRef.files[0];
-                    var oReader = new FileReader();            
-                    oReader.onload = (e) => {
-                        var sFileBinary = e.target.result;
-                         sFileBinary = sFileBinary.substring(sFileBinary.indexOf(",") + 1);                        
-                        var oData = {
-                            name: oFile.name,
-                            mimeType: oFile.type,
-                            size: oFile.size,
-                            content: sFileBinary
-                        };            
-                        var oModel = this.getOwnerComponent().getModel();
-                        oModel.create("/Documents", oData, {
-                            method: "POST",
-                            success:function(odata) {
-                                sap.m.MessageToast.show("File uploaded successfully!");
-                                console.log(odata);
-                            },
-                            error: function(error){
-                                sap.m.MessageToast.show("File upload failed.");
-                                console.log(error);
-                            }
-                        });
-                    };            
-                    oReader.onerror = () => {
-                        sap.m.MessageToast.show("Error reading file.");
-                    };
-                    oReader.readAsDataURL(oFile);
-                } else {
-                    sap.m.MessageToast.show("Please choose a file first.");
+                var oFile = oFileUploader.oFileUpload.files[0];
+
+                if (!oFile) {
+                    sap.m.MessageToast.show("Please select a file first");
+                    return;
                 }
+
+                var oReader = new FileReader();
+                oReader.onload = function (e) {
+                    var sFileBinary = e.target.result;
+                    sFileBinary = sFileBinary.substring(sFileBinary.indexOf(",") + 1);
+
+                    var oData = {
+                        name: oFile.name,
+                        mimeType: oFile.type,
+                        size: oFile.size,
+                        content: sFileBinary
+                    };
+
+                    var oModel = this.getOwnerComponent().getModel();
+                    oModel.create("/Documents", oData, {
+                        method: "POST",
+                        success: function (odata) {
+                            sap.m.MessageToast.show("File uploaded successfully!");
+                            console.log(odata);
+                        },
+                        error: function (error) {
+                            sap.m.MessageToast.show("File upload failed.");
+                            console.log(error);
+                        }
+                    });
+                }.bind(this);
+
+                oReader.onerror = function () {
+                    sap.m.MessageToast.show("Error reading file.");
+                };
+
+                oReader.readAsDataURL(oFile);
             },
-            onRowSelectionChange:function(oEvent){
-                console.log(oEvent);
-            },
-            onSelectionChange: function(oEvent) {
-                var oSelectedItem = oEvent.getParameter("listItem");
-                var oContext = oSelectedItem.getBindingContext();
-                var oData = oContext.getObject();
-                
+            onSelectionChange: function (oEvent) {
+                var oData = oEvent.getParameter("listItem").getBindingContext().getObject();
                 var oImage = new Image({
                     src: "data:" + oData.mimeType + ";base64," + oData.content,
-                    densityAware: false,
-                    width: "500px", 
-                    height: "500px" 
+                    width: "500px",
+                    height: "500px"
                 });
-    
+
                 var oDialog = new Dialog({
                     title: "Document Image",
                     content: oImage,
                     beginButton: new Button({
                         text: "Close",
-                        press: function() {
+                        press: function () {
                             oDialog.close();
                         }
                     }),
-                    afterClose: function() {
+                    afterClose: function () {
                         oDialog.destroy();
                     }
                 });
-    
                 oDialog.open();
             }
         });

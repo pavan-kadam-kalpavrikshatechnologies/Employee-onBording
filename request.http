@@ -31,10 +31,10 @@ Authorization: Basic risk.viewer@tester.sap.com:
 ## service info
 POST {{server}}/empEducation
 Content-Type: application/json
-Authorization: Basic risk.manager@tester.sap.com:
+Authorization: Basic risk.viewer@tester.sap.com:
 
  {
-    "ID": "004",
+    "ID": "006",
     "collegeName": "XYZ  University",
     "degree": "MCA",
     "fromDate": "/Date(1346457600000)/",
@@ -44,6 +44,6 @@ Authorization: Basic risk.manager@tester.sap.com:
 ###------------------------------------------------------------------------
 ## service info
 GET {{server}}/Login
-Authorization: Basic risk.viewer@tester.sap.com:
+Authorization: Basic risk.manager@tester.sap.com:
 
 

@@ -137,8 +137,7 @@
 							visibleInAdvancedArea="true">
 							
 						</smartFilterBar:ControlConfiguration>			
-					</smartFilterBar:controlConfiguration>
-					
+					</smartFilterBar:controlConfiguration>					
 				</smartFilterBar:SmartFilterBar>
       <VBox >
       <smartTable:SmartTable entitySet="employment" header="Employment Details"

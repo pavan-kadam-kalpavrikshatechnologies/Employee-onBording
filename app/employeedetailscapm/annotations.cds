@@ -8,10 +8,10 @@ annotate service.employment with {
     designation   @Common          : {Label: 'Designation'};
     officeAddress @Common          : {Label: 'Office Address'};
 
-     @Common.ValueListWithFixedValues : true 
-      eID           @Common.ValueList: {
+    @Common.ValueListWithFixedValues : true 
+    eID           @Common.ValueList: {
         $Type          : 'Common.ValueListType',
-        Parameters     : [  
+        Parameters     : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
                 ValueListProperty: 'eID',
@@ -25,7 +25,7 @@ annotate service.employment with {
         CollectionPath : 'employment',
         SearchSupported: true
     };
-
+   
     companyName           @Common.ValueList: {
         $Type          : 'Common.ValueListType',
         Parameters     : [
@@ -42,5 +42,4 @@ annotate service.employment with {
         CollectionPath : 'employment',
         SearchSupported: true
     };
-   
 }
